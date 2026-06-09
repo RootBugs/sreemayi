@@ -156,12 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', () => {
       const img = item.querySelector('img');
       const caption = item.querySelector('.gallery-overlay p');
-      if (img) {
-        lightboxImg.src = img.src;
-        lightboxImg.style.display = 'block';
-      } else {
-        lightboxImg.style.display = 'none';
-      }
+      // Only open lightbox if there's an actual image (skip placeholders)
+      if (!img || !img.src) return;
+      lightboxImg.src = img.src;
+      lightboxImg.style.display = 'block';
       lightboxCaption.textContent = caption ? caption.textContent : '';
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
