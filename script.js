@@ -146,39 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => sparkle.remove(), 800);
   });
 
-  // ---- Gallery Lightbox ----
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxCaption = document.getElementById('lightboxCaption');
-  const lightboxClose = document.getElementById('lightboxClose');
-
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const caption = item.querySelector('.gallery-overlay p');
-      // Only open lightbox if there's an actual image (skip placeholders)
-      if (!img || !img.src) return;
-      lightboxImg.src = img.src;
-      lightboxImg.style.display = 'block';
-      lightboxCaption.textContent = caption ? caption.textContent : '';
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
   // ---- Smooth Scroll for Nav Links ----
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
